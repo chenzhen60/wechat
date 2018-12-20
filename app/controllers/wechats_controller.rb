@@ -1,13 +1,14 @@
 class WechatsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :verify
-  
+
   def show
     render :plain => params[:echostr]
   end
 
   def create
-    Rails.logger.info request.body.read
+    keyword = params[:xml]['Content']
+    @text = TuringRobot.call(keyword)
     render 'wechat/info', layout: false, :formats => :xml
   end
 

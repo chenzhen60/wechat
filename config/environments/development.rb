@@ -58,4 +58,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  TURING_ROBOT_USER_ID = '368676'
+  TURING_ROBOT_API_KEY = '2262bb61c4f344939176bcf1bd6d2dc2'
+  TURING_ROBOT_API_URL = 'http://openapi.tuling123.com/openapi/api/v2'
 end
