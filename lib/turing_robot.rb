@@ -17,8 +17,8 @@ class TuringRobot
       res = NetHelper.post(TURING_ROBOT_API_URL, data)
       json = JSON.parse(res)
       Rails.logger.info json
-      # text = json['results'][0]['values']['text']
-      text = json.to_s
+      text = json['results'][0]['values']['text']
+      # text = json.to_s
     end
   end
 end
