@@ -9,7 +9,7 @@ class WechatsController < ApplicationController
   def create
     keyword = params[:xml]['Content']
     @text = TuringRobot.call(keyword)
-    byebug
+    # byebug
     render 'wechat/info', layout: false, :formats => :xml
   end
 
