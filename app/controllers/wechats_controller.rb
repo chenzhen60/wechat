@@ -8,7 +8,9 @@ class WechatsController < ApplicationController
 
   def create
     keyword = params[:xml]['Content']
-    @text = TuringRobot.call(keyword)
+
+    method = get_method(keyword)
+    @text = self.send(method.to_sym, keyword)
     # byebug
     render 'wechat/info', layout: false, :formats => :xml
   end
@@ -28,4 +30,26 @@ class WechatsController < ApplicationController
     xml_content = Crack::XML.parse(request.body.read)
     params[:xml] = JSON.parse(xml_content.to_json)['xml']
   end
+
+  def get_method(keyword)
+    case keyword
+    when keyword.include?('吃什么') || keyword.include?('吃啥')
+      'call_random_food'
+    else
+      'call_turing_robot'
+    end
+
+  end
+
+
+  def call_turing_robot(keyword)
+    TuringRobot.call(keyword)
+  end
+
+  def call_random_food(keyword)
+    food = `python3 #{Rails.root.to_s}/lib_other/random_food.py`.chomp
+    "今天吃#{food}吧"
+  end
+
+
 end
