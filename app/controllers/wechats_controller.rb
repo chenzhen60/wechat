@@ -10,7 +10,7 @@ class WechatsController < ApplicationController
     keyword = params[:xml]['Content']
 
     method = get_method(keyword)
-    byebug
+    # byebug
     @text = self.send(method.to_sym, keyword)
     # byebug
     render 'wechat/info', layout: false, :formats => :xml
@@ -35,9 +35,9 @@ class WechatsController < ApplicationController
   def get_method(keyword)
     case keyword
     when keyword.include?('吃什么') || keyword.include?('吃啥')
-      'call_random_food'
+      return 'call_random_food'
     else
-      'call_turing_robot'
+      return 'call_turing_robot'
     end
 
   end
