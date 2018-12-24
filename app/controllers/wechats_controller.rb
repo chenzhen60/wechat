@@ -35,9 +35,10 @@ class WechatsController < ApplicationController
   def get_method(keyword)
     case keyword
     when keyword.include?('吃什么') || keyword.include?('吃啥')
-      return 'call_random_food'
+    when /.*[吃什么|吃啥].*/
+      'call_random_food'
     else
-      return 'call_turing_robot'
+      'call_turing_robot'
     end
 
   end
