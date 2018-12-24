@@ -10,6 +10,7 @@ class WechatsController < ApplicationController
     keyword = params[:xml]['Content']
 
     method = get_method(keyword)
+    byebug
     @text = self.send(method.to_sym, keyword)
     # byebug
     render 'wechat/info', layout: false, :formats => :xml
